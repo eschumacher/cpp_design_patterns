@@ -1,0 +1,1 @@
+add_executable(pattern_strategy src/strategy.cpp)
