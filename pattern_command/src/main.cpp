@@ -3,6 +3,7 @@
 #include <memory>
 #include "counter.hpp"
 #include "decrement_command.hpp"
+#include "double_command.hpp"
 #include "increment_command.hpp"
 
 namespace {
@@ -26,6 +27,15 @@ int main() {
   print_counter(counter);
 
   counter.undo();
+  print_counter(counter);
+
+  counter.execute_command(std::make_unique<DoubleCommand>());
+  print_counter(counter);
+
+  while (counter.undo()) {
+    print_counter(counter);
+  }
+
   print_counter(counter);
 
   return 0;

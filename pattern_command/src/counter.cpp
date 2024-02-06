@@ -9,14 +9,16 @@ void Counter::execute_command(std::unique_ptr<CounterCommand> command) {
   command_history_.push(std::move(command));
 }
 
-void Counter::undo() {
+bool Counter::undo() {
   if (command_history_.empty()) {
     std::cout << "No command to undo.\n";
-    return;
+    return false;
   }
 
   auto previous_command = std::move(command_history_.top());
   command_history_.pop();
 
   value_ = previous_command->undo(value_);
+
+  return true;
 }

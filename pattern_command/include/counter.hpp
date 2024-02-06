@@ -8,7 +8,7 @@
 class Counter {
  public:
   void execute_command(std::unique_ptr<CounterCommand> command);
-  void undo();
+  bool undo();
 
   [[nodiscard]] int get_value() const noexcept { return value_; }
 
