@@ -2,6 +2,7 @@
 #include <iostream>
 #include <memory>
 #include "counter.hpp"
+#include "decrement_command.hpp"
 #include "increment_command.hpp"
 
 namespace {
@@ -19,6 +20,12 @@ int main() {
   print_counter(counter);
 
   counter.execute_command(std::make_unique<IncrementCommand>());
+  print_counter(counter);
+
+  counter.execute_command(std::make_unique<DecrementCommand>());
+  print_counter(counter);
+
+  counter.undo();
   print_counter(counter);
 
   return 0;
